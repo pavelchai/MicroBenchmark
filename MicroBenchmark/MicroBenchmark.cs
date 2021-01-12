@@ -155,7 +155,7 @@ namespace MicroBenchmark
         /// Excludes the outliers from the input sequence
         /// (Tukey's fences outlier detection method is used).
         /// </summary>
-        /// <param name="samples"> Input samples (sorted in ascending order). </param>
+        /// <param name="samples"> List of the input samples (sorted in ascending order). </param>
         /// <param name="k">
         /// k coefficient for Tukey's fences outlier detection method (if outliers exclusion is used).
         /// Default value is 1.5.
@@ -189,9 +189,9 @@ namespace MicroBenchmark
         }
 
         /// <summary>
-        /// Gets a quartiles from samples.
+        /// Gets a quartiles from the samples.
         /// </summary>
-        /// <param name="samples"> Samples (sorted in ascending order). </param>
+        /// <param name="samples"> List of the samples (sorted in ascending order). </param>
         /// <returns> Quartiles (Q1,Q2,Q3). </returns>
         private static double[] GetQuartiles(this IList<double> samples)
         {
