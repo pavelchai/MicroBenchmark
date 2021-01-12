@@ -56,13 +56,23 @@ namespace MicroBenchmark
         /// <exception cref="ArgumentException">
         /// The excection that throws if action is null or N is less than or equals NStart.
         /// </exception>
-        public static MicroBenchmarkResult Run(Action action, Action beforeAction = null, Action afterAction = null, int N = 100, int NSkip = 5, bool filterOutliers = true, double k = 1.5)
+        public static BenchmarkResult Run(Action action, Action beforeAction = null, Action afterAction = null, int N = 100, int NSkip = 5, bool filterOutliers = true, double k = 1.5)
         {
             // Validation  
 
             if (action == null)
             {
                 throw new ArgumentNullException("Action is null");
+            }
+
+            if (N < 0)
+            {
+                throw new ArgumentException($"N={N} is negative");
+            }
+
+            if (NSkip < 0)
+            {
+                throw new ArgumentException($"NSkip={NSkip} is negative");
             }
 
             int length = N - NSkip;
@@ -142,7 +152,7 @@ namespace MicroBenchmark
             double[] quartiles = filteredSamples.GetQuartiles();
 
             // Returns the result
-            return new MicroBenchmarkResult(
+            return new BenchmarkResult(
                 quartiles[0] * resolution,
                 quartiles[1] * resolution,
                 quartiles[2] * resolution,
@@ -161,7 +171,7 @@ namespace MicroBenchmark
         /// Default value is 1.5.
         /// </param>
         /// <returns> List of the samples without outliers. </returns>
-        private static IList<double> TukeyFences(this IList<double> samples, double k = 1.5)
+        private static IList<double> TukeyFences(this IList<double> samples, double k)
         {
             double[] quartiles = samples.GetQuartiles();
 

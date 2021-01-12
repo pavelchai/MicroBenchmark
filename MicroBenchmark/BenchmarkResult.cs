@@ -8,7 +8,7 @@ namespace MicroBenchmark
     /// <summary>
     /// Represents the results from <see cref="Benchmark.Run"></see> method.
     /// </summary>
-    public sealed class MicroBenchmarkResult
+    public sealed class BenchmarkResult
     {
         /// <summary>
         /// First quartile (in s).
@@ -49,7 +49,7 @@ namespace MicroBenchmark
         /// <param name="mean"> Mean (in s). </param>
         /// <param name="stdDev"> Standard deviation (in s). </param>
         /// <param name="resolution"> Resolution of the measurement (in s). </param>
-        public MicroBenchmarkResult(double Q1, double Q2, double Q3, double mean, double stdDev, double resolution)
+        public BenchmarkResult(double Q1, double Q2, double Q3, double mean, double stdDev, double resolution)
         {
             this.Q1 = Q1;
             this.Q2 = Q2;
